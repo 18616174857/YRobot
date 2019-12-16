@@ -13,64 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a5f4671-c836-4286-b035-1f836ed007da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/YRobotApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/BlePeripheralsAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/ConnectedPeripheralFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/DfuFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/MainActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/MainFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/PeripheralModeFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/PeripheralModulesFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/ScannerFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/ScannerStatusFragmentDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/SplashActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/YrConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/views/ControlFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/views/InfoFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/BleUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/UartPacket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/UartPacketManagerBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/BleManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/BlePeripheral.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/BlePeripheralBattery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/BlePeripheralDfu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/BlePeripheralUart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/BleScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/BleUUIDNames.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/UartDataManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/central/UartPacketManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/peripheral/DeviceInformationPeripheralService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/peripheral/GattServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/peripheral/PeripheralService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/peripheral/UartPeripheralModePacketManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/ble/peripheral/UartPeripheralService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/DfuFilePickerFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/DfuProgressFragmentDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/DfuService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/DfuUpdater.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/DownloadTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/NotificationActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/ProgressFragmentDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/dfu/ReleasesParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/models/DeviceInformationServiceViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/models/DfuViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/models/PeripheralModeManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/models/PeripheralModeViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/models/ScannerViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/style/RssiUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/style/StyledSnackBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/style/UartStyle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/AdapterUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/DialogUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/FileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/KeyboardUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/LocalizationManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/MetricsUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/NetworkUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/SingleLiveEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/ThreadUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/TwoDimensionScrollView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yrobot/exo/utils/UriBeaconUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MPChartLib/MPChartLib.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../MPChartLib/MPChartLib.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +27,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="R52M40ZSA0F" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_26" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -92,19 +38,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/ConnectedPeripheralFragment.java">
+        <entry file="file://$USER_HOME$/android-ws/YRobot/app/src/main/java/com/yrobot/exo/app/ConnectedPeripheralFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="953">
-              <caret line="416" column="22" selection-start-line="416" selection-start-column="22" selection-end-line="416" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3191#3218#0" expanded="true" />
-                <element signature="e#16027#16028#0" expanded="true" />
-                <element signature="e#16117#16118#0" expanded="true" />
-                <element signature="e#22672#22673#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="735">
+              <caret line="326" column="13" selection-start-line="326" selection-start-column="4" selection-end-line="326" selection-end-column="46" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/android-ws/YRobot/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1050">
+              <caret line="70" column="43" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/android-ws/YRobot/app/src/main/res/layout/fragment_control.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -135,11 +90,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/views/ControlFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3577">
+            <state relative-caret-position="3945">
               <caret line="317" column="4" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#16218#16219#0" expanded="true" />
                 <element signature="e#16277#16278#0" expanded="true" />
+                <element signature="e#18343#18344#0" expanded="true" />
                 <element signature="e#18402#18403#0" expanded="true" />
               </folding>
             </state>
@@ -149,11 +106,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/data/FirmwareManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
+            <state relative-caret-position="810">
               <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1247#1248#0" expanded="true" />
                 <element signature="e#1283#1284#0" expanded="true" />
+                <element signature="e#3102#3103#0" expanded="true" />
                 <element signature="e#3132#3133#0" expanded="true" />
               </folding>
             </state>
@@ -163,16 +122,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/data/ChartManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1155">
+            <state relative-caret-position="1560">
               <caret line="125" column="29" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3965#3966#0" expanded="true" />
-                <element signature="e#3994#3995#0" expanded="true" />
-                <element signature="e#6258#6259#0" expanded="true" />
-                <element signature="e#6321#6322#0" expanded="true" />
-                <element signature="e#6804#6805#0" expanded="true" />
-                <element signature="e#6844#6845#0" expanded="true" />
+                <element signature="e#10391#10392#0" expanded="true" />
                 <element signature="e#10425#10426#0" expanded="true" />
               </folding>
             </state>
@@ -182,10 +136,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1028">
+            <state relative-caret-position="5100">
               <caret line="389" selection-start-line="389" selection-end-line="389" />
               <folding>
+                <element signature="e#23040#23041#0" expanded="true" />
                 <element signature="e#23074#23075#0" expanded="true" />
+                <element signature="e#25112#25113#0" expanded="true" />
                 <element signature="e#25151#25152#0" expanded="true" />
               </folding>
             </state>
@@ -410,8 +366,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="180" />
     <option name="y" value="65" />
-    <option name="width" value="1440" />
+    <option name="width" value="1080" />
     <option name="height" value="2105" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -422,8 +379,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -484,6 +439,16 @@
               <item name="yrobot" type="462c0819:PsiDirectoryNode" />
               <item name="exo" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="YRobot" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="yrobot" type="462c0819:PsiDirectoryNode" />
+              <item name="exo" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -502,8 +467,7 @@
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="yrobot" type="462c0819:PsiDirectoryNode" />
               <item name="exo" type="462c0819:PsiDirectoryNode" />
-              <item name="ble" type="462c0819:PsiDirectoryNode" />
-              <item name="central" type="462c0819:PsiDirectoryNode" />
+              <item name="dfu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="YRobot" type="1abcf292:AndroidViewProjectNode" />
@@ -512,13 +476,36 @@
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="yrobot" type="462c0819:PsiDirectoryNode" />
               <item name="exo" type="462c0819:PsiDirectoryNode" />
-              <item name="ble" type="462c0819:PsiDirectoryNode" />
-              <item name="peripheral" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="YRobot" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="yrobot" type="462c0819:PsiDirectoryNode" />
+              <item name="exo" type="462c0819:PsiDirectoryNode" />
+              <item name="style" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="YRobot" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="yrobot" type="462c0819:PsiDirectoryNode" />
+              <item name="exo" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="YRobot" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="YRobot" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="YRobot" type="1abcf292:AndroidViewProjectNode" />
@@ -528,13 +515,16 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/android-sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/layout" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -645,7 +635,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-2" width="1440" height="2562" extended-state="7" />
+    <frame x="0" y="-2" width="1440" height="2562" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -658,13 +648,13 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.3296342" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49713057" visible="true" weight="0.3218249" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49713057" weight="0.32156056" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.3296342" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3296342" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5028694" side_tool="true" weight="0.32840115" />
       <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4964132" weight="0.22071517" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4964132" visible="true" weight="0.22071517" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.3296342" />
       <window_info anchor="bottom" id="Android Profiler" order="9" weight="0.3296342" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -677,16 +667,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/UartModeFragment.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_uart.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/PeripheralModulesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="214" selection-start-line="214" selection-end-line="214" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/AboutFragment.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/CommonHelpFragment.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/DeviceInformationServiceFragment.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/PeripheralModeFragment.java">
@@ -967,54 +947,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/data/ChartManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/ConnectedPeripheralFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="125" column="29" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
+        <state relative-caret-position="488">
+          <caret line="385" column="35" selection-start-line="385" selection-start-column="35" selection-end-line="385" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3965#3966#0" expanded="true" />
-            <element signature="e#3994#3995#0" expanded="true" />
-            <element signature="e#6258#6259#0" expanded="true" />
-            <element signature="e#6321#6322#0" expanded="true" />
-            <element signature="e#6804#6805#0" expanded="true" />
-            <element signature="e#6844#6845#0" expanded="true" />
-            <element signature="e#10425#10426#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1028">
-          <caret line="389" selection-start-line="389" selection-end-line="389" />
-          <folding>
-            <element signature="e#23074#23075#0" expanded="true" />
-            <element signature="e#25151#25152#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/data/FirmwareManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1283#1284#0" expanded="true" />
-            <element signature="e#3132#3133#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/views/ControlFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3577">
-          <caret line="317" column="4" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#16277#16278#0" expanded="true" />
-            <element signature="e#18402#18403#0" expanded="true" />
+            <element signature="e#15983#15984#0" expanded="true" />
+            <element signature="e#16027#16028#0" expanded="true" />
+            <element signature="e#16068#16069#0" expanded="true" />
+            <element signature="e#16117#16118#0" expanded="true" />
+            <element signature="e#22617#22618#0" expanded="true" />
+            <element signature="e#22672#22673#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1031,6 +975,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/views/ControlFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3945">
+          <caret line="317" column="4" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#16218#16219#0" expanded="true" />
+            <element signature="e#16277#16278#0" expanded="true" />
+            <element signature="e#18343#18344#0" expanded="true" />
+            <element signature="e#18402#18403#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/data/FirmwareManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="66" column="8" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1247#1248#0" expanded="true" />
+            <element signature="e#1283#1284#0" expanded="true" />
+            <element signature="e#3102#3103#0" expanded="true" />
+            <element signature="e#3132#3133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/data/ChartManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="125" column="29" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10391#10392#0" expanded="true" />
+            <element signature="e#10425#10426#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5100">
+          <caret line="389" selection-start-line="389" selection-end-line="389" />
+          <folding>
+            <element signature="e#23040#23041#0" expanded="true" />
+            <element signature="e#23074#23075#0" expanded="true" />
+            <element signature="e#25112#25113#0" expanded="true" />
+            <element signature="e#25151#25152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-ws/YRobot/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="70" column="43" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-ws/YRobot/app/src/main/res/layout/fragment_control.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/YrConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
@@ -1038,17 +1054,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yrobot/exo/app/ConnectedPeripheralFragment.java">
+    <entry file="file://$USER_HOME$/android-ws/YRobot/app/src/main/java/com/yrobot/exo/app/ConnectedPeripheralFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="953">
-          <caret line="416" column="22" selection-start-line="416" selection-start-column="22" selection-end-line="416" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3191#3218#0" expanded="true" />
-            <element signature="e#16027#16028#0" expanded="true" />
-            <element signature="e#16117#16118#0" expanded="true" />
-            <element signature="e#22672#22673#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="735">
+          <caret line="326" column="13" selection-start-line="326" selection-start-column="4" selection-end-line="326" selection-end-column="46" />
         </state>
       </provider>
     </entry>
