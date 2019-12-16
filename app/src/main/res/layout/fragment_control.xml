@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="25dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    tools:context=".app.views.ControlFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/opensans"
+        android:text="System Control"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/textDark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_motor_pos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="@color/white" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_motor_vel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="@color/white" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_motor_cur"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <com.xw.repo.BubbleSeekBar
+                android:id="@+id/motor_seekbar_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <com.xw.repo.BubbleSeekBar
+                android:id="@+id/motor_seekbar_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--        android:layout_height="wrap_content"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="0dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvStreaming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:text="Streaming"
+                    android:textColor="@color/textDark" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/streamingSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:theme="@style/LightSwitchStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvEnable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:text="Disabled"
+                    android:textColor="@color/textDark" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/enableSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:theme="@style/LightSwitchStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnResetFirmware"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:text="Firmware Upgrade" />
+
+                <TextView
+                    android:id="@+id/tvEnableCurrent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:text="Reset"
+                    android:textColor="@color/textDark"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/enableCurrentSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:theme="@style/LightSwitchStyle"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans"
+                    android:text="Record" />
+
+                <Button
+                    android:id="@+id/btn_param_calibrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="right|center_vertical"
+                    android:text="Calibrate" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCalibration"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btnCalibration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:text="Run Calibration" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarCalibration"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="left"
+                    android:text="Time Left"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/infotext"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvTimeLeftHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="right"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/textDark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="left"
+                    android:text="Temp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/infotext"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvTemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="right"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/textDark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="left"
+                    android:text="Voltage"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/infotext"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvVoltage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="right"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/textDark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="left"
+                    android:text="Current"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/infotext"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvCurrent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="right"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/textDark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<TextView-->
+        <!--android:id="@+id/batteryLevelView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="@font/opensans"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="Battery Level"-->
+        <!--android:textColor="@color/infotext"-->
+        <!--android:visibility="gone" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="start"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:visibility="gone">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:fontFamily="@font/opensans"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="Force Gain"-->
+        <!--android:textColor="@color/infotext" />-->
+
+        <!--<SeekBar-->
+        <!--android:id="@+id/gainControlSeekBar"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="10dp"-->
+        <!--android:theme="@style/SeekBarStyle" />-->
+
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+    <!--    <com.github.mikephil.charting.charts.LineChart-->
+    <!--        android:id="@+id/chart_motor_r"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:visibility="gone" />-->
+
+    <!--    <com.github.mikephil.charting.charts.LineChart-->
+    <!--        android:id="@+id/chart_gait_phase"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:visibility="gone" />-->
+
+    <!--    <com.github.mikephil.charting.charts.LineChart-->
+    <!--        android:id="@+id/chart_leg_l"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="2"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:visibility="gone" />-->
+
+    <!--    <com.github.mikephil.charting.charts.LineChart-->
+    <!--        android:id="@+id/chart_leg_r"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="2"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:visibility="gone" />-->
+
+
+    <!--    <com.github.mikephil.charting.charts.LineChart-->
+    <!--        android:id="@+id/chart_motor_l"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:visibility="gone" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!--android:paddingTop="20dp"-->
+        <!--android:paddingBottom="20dp"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:paddingRight="20dp"-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.sdsmdg.harjot.crollerTest.Croller
+                android:id="@+id/circularSeekBarLeft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="20dp"
+                app:back_circle_color="#EDEDED"
+                app:indicator_color="#0B3C49"
+                app:indicator_width="10"
+                app:is_continuous="true"
+                app:label_color="#000000"
+                app:main_circle_color="#FFFFFF"
+                app:max="1000"
+                app:progress_primary_color="#0B3C49"
+                app:progress_secondary_color="#EEEEEE"
+                app:start_offset="45" />
+
+            <!--<com.sdsmdg.harjot.crollerTest.Croller-->
+            <!--android:id="@+id/circularSeekBarMiddle"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--app:back_circle_color="#EDEDED"-->
+            <!--app:indicator_color="#0B3C49"-->
+            <!--app:indicator_width="10"-->
+            <!--app:is_continuous="true"-->
+            <!--app:label_color="#000000"-->
+            <!--app:main_circle_color="#FFFFFF"-->
+            <!--app:max="1000"-->
+            <!--app:progress_primary_color="#0B3C49"-->
+            <!--app:progress_secondary_color="#EEEEEE"-->
+            <!--app:start_offset="45" />-->
+
+            <com.sdsmdg.harjot.crollerTest.Croller
+                android:id="@+id/circularSeekBarRight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:back_circle_color="#EDEDED"
+                app:indicator_color="#0B3C49"
+                app:indicator_width="10"
+                app:is_continuous="true"
+                app:label_color="#000000"
+                app:main_circle_color="#FFFFFF"
+                app:max="1000"
+                app:progress_primary_color="#0B3C49"
+                app:progress_secondary_color="#EEEEEE"
+                app:start_offset="45" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.sdsmdg.harjot.crollerTest.Croller
+                android:id="@+id/circularSeekBarAccel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:back_circle_color="#EDEDED"
+                app:indicator_color="#0B3C49"
+                app:indicator_width="10"
+                app:is_continuous="true"
+                app:label_color="#000000"
+                app:main_circle_color="#FFFFFF"
+                app:max="1000"
+                app:progress_primary_color="#0B3C49"
+                app:progress_secondary_color="#EEEEEE"
+                app:start_offset="45" />
+
+            <!--<com.sdsmdg.harjot.crollerTest.Croller-->
+            <!--android:id="@+id/circularSeekBarMiddle"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--app:back_circle_color="#EDEDED"-->
+            <!--app:indicator_color="#0B3C49"-->
+            <!--app:indicator_width="10"-->
+            <!--app:is_continuous="true"-->
+            <!--app:label_color="#000000"-->
+            <!--app:main_circle_color="#FFFFFF"-->
+            <!--app:max="1000"-->
+            <!--app:progress_primary_color="#0B3C49"-->
+            <!--app:progress_secondary_color="#EEEEEE"-->
+            <!--app:start_offset="45" />-->
+
+            <com.sdsmdg.harjot.crollerTest.Croller
+                android:id="@+id/circularSeekBarVel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:back_circle_color="#EDEDED"
+                app:indicator_color="#0B3C49"
+                app:indicator_width="10"
+                app:is_continuous="true"
+                app:label_color="#000000"
+                app:main_circle_color="#FFFFFF"
+                app:max="1000"
+                app:progress_primary_color="#0B3C49"
+                app:progress_secondary_color="#EEEEEE"
+                app:start_offset="45" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <SeekBar
+            android:id="@+id/xMaxEntriesSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:theme="@style/SeekBarStyle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/opensans"
+            android:text="@string/plotter_width"
+            android:textColor="@color/infotext" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans"
+            android:text="@string/plotter_autoscroll"
+            android:textColor="@color/infotext" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/autoscrollSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:theme="@style/LightSwitchStyle"
+            app:switchPadding="5dp" />
+    </LinearLayout>
+
+</LinearLayout>

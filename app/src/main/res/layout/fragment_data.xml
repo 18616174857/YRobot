@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="25dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="25dp"
+    tools:context=".app.views.ControlFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/opensans"
+        android:text="Data View"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/textDark" />
+
+    <TextView
+        android:id="@+id/data_tv_msg_rates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/opensans"
+        android:text="Rates"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/infotext" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart_leg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/white" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart_leg_imu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/white" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart_gait_percent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart_gait_phase"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:visibility="gone" />
+
+</LinearLayout>

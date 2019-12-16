@@ -1,0 +1,6 @@
+# Whitelist MPAndroidChart
+# Preserve all public classes and methods
+
+-keep public class com.github.mikephil.charting.animation.* {
+    public protected *;
+}

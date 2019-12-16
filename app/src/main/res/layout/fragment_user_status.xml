@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="25dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    tools:context=".app.views.UserStatusFragment">
+
+    <LinearLayout
+        android:id="@+id/llSensor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/opensans"
+            android:text="Force Profile"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        <!--        android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--        android:textStyle="bold"-->
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/seekBarProfile1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            app:bsb_show_section_mark="false"
+            app:bsb_show_section_text="false"
+            app:bsb_show_thumb_text="true"
+            app:bsb_thumb_text_size="18sp"
+            app:bsb_touch_to_seek="true"
+            app:max="50"
+            app:min="0" />
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/seekBarProfile2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            app:bsb_show_thumb_text="true"
+            app:bsb_thumb_text_size="18sp"
+            app:bsb_touch_to_seek="true"
+            app:max="100"
+            app:min="50" />
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+    <!--android:layout_marginLeft="15dp"-->
+    <!--android:layout_marginRight="25dp"-->
+    <!--android:layout_marginBottom="20dp"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:paddingRight="10dp">-->
+
+    <!--<com.xw.repo.BubbleSeekBar-->
+    <!--android:id="@+id/seekBarProfile1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginRight="5dp"-->
+    <!--android:layout_weight="1"-->
+    <!--app:bsb_show_section_mark="false"-->
+    <!--app:bsb_show_section_text="false"-->
+    <!--app:bsb_show_thumb_text="true"-->
+    <!--app:bsb_thumb_text_size="18sp"-->
+    <!--app:bsb_touch_to_seek="true"-->
+    <!--app:max="50"-->
+    <!--app:min="0" />-->
+
+    <!--<com.xw.repo.BubbleSeekBar-->
+    <!--android:id="@+id/seekBarProfile2"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="5dp"-->
+    <!--android:layout_weight="1"-->
+    <!--app:bsb_show_thumb_text="true"-->
+    <!--app:bsb_thumb_text_size="18sp"-->
+    <!--app:bsb_touch_to_seek="true"-->
+    <!--app:max="100"-->
+    <!--app:min="50" />-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:fontFamily="@font/opensans"
+            android:text="MODES"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/radioModeSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioSine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:checked="true"
+                android:text="SINE" />
+
+            <RadioButton
+                android:id="@+id/radioTriangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="TRIANGLE" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <item>
+            <shape>
+                <size
+                    android:height="16dp"
+                    android:width="25dp" />
+
+<!--                <solid android:color="@android:color/transparent" />-->
+            </shape>
+        </item>
+<!--                <item android:drawable="@drawable/"/>-->
+<!--        <item android:drawable="@drawable/slider_thumb"/>-->
+
+    </layer-list>
+
+</selector>
