@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothGatt;
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,24 +15,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.common.collect.EvictingQueue;
 import com.yrobot.exo.R;
-import com.yrobot.exo.app.data.FirmwareManager;
-import com.yrobot.exo.app.data.ParamManager;
+import com.yrobot.exo.app.utils.FirmwareManager;
+import com.yrobot.exo.app.data.MockHardware;
 import com.yrobot.exo.app.utils.CRC8;
-import com.yrobot.exo.app.data.ChartManager;
 import com.yrobot.exo.app.data.DataPacket;
 import com.yrobot.exo.app.data.ExoData;
 import com.yrobot.exo.app.utils.MsgStat;
-import com.yrobot.exo.app.data.SeekBarManager;
+import com.yrobot.exo.app.utils.SeekBarManager;
 import com.yrobot.exo.ble.BleUtils;
 import com.yrobot.exo.ble.central.BlePeripheral;
 import com.yrobot.exo.ble.central.BlePeripheralUart;
@@ -67,19 +58,17 @@ import static com.yrobot.exo.app.YrConstants.KEY_FEEDBACK_PACKET_STATUS;
 import static com.yrobot.exo.app.YrConstants.KEY_FIRMWARE_PACKET;
 import static com.yrobot.exo.app.YrConstants.KEY_FIRMWARE_PACKET_META;
 import static com.yrobot.exo.app.YrConstants.KEY_PACKET_SELECT;
-import static com.yrobot.exo.app.YrConstants.KEY_PARAM_REQUEST;
-import static com.yrobot.exo.app.YrConstants.KEY_RESTART;
+import static com.yrobot.exo.app.YrConstants.USE_MOCK_DEVICE;
 import static com.yrobot.exo.app.YrConstants.USE_RX_RING_BUFFER;
 import static com.yrobot.exo.app.YrConstants.USE_TX_RING_BUFFER;
 import static com.yrobot.exo.app.YrConstants.addKey;
 import static com.yrobot.exo.app.YrConstants.bytesToShort;
-import static com.yrobot.exo.app.YrConstants.colors;
 
 // helper class with common behaviour for all peripheral modules
-public class ConnectedPeripheralFragment extends Fragment implements UartDataManager.UartDataManagerListener, BlePeripheral.CompletionHandler {
+public class ConnectedPeripheralFragment extends Fragment implements MockHardware.MockDeviceHandler, UartDataManager.UartDataManagerListener, BlePeripheral.CompletionHandler {
 
     @SuppressWarnings("unused")
-    private final static String TAG = "yr-" + ConnectedPeripheralFragment.class.getSimpleName();
+    private final static String TAG = ConnectedPeripheralFragment.class.getSimpleName();
 
     // Fragment parameters
     protected static final String ARG_SINGLEPERIPHERALIDENTIFIER = "SinglePeripheralIdentifier";
@@ -102,9 +91,10 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
     private int mIntervalFast = mIntervalFastInit;
     private int mIntervalTx = 10;
     private int mIntervalSlow = 500;
-    private Handler mHandlerFast = new Handler();
-    private Handler mHandlerTx = new Handler();
-    private Handler mHandlerSlow = new Handler();
+
+    private Handler mHandlerFast;
+    private Handler mHandlerTx;
+    private Handler mHandlerSlow;
 
     public static final int RX_BUF_SIZE = 1000;
 
@@ -121,6 +111,18 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
 
     public ConnectedPeripheralFragment() {
         seekBarManagers = new HashMap<>();
+        msgStats = new ArrayList<>();
+        for (MsgStatType stat : MsgStatType.values()) {
+            msgStats.add(new MsgStat());
+        }
+
+        mHandlerFast = new Handler();
+        mHandlerTx = new Handler();
+        mHandlerSlow = new Handler();
+
+        if (USE_MOCK_DEVICE) {
+            MockHardware.getInstance().setCallback(this);
+        }
     }
 
     public void setActivity(Activity activity) {
@@ -145,15 +147,6 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
 
         setHasOptionsMenu(true);
 
-        msgStats = new ArrayList<>();
-        for (MsgStatType stat : MsgStatType.values()) {
-            msgStats.add(new MsgStat());
-        }
-
-        mHandlerFast = new Handler();
-        mHandlerTx = new Handler();
-        mHandlerSlow = new Handler();
-
         startRepeatingTask();
     }
 
@@ -169,8 +162,9 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
     long time_last = 0;
     long time_last_change = 0;
     long change_timeout = 500;
-
     private byte mLastPacket = 0;
+
+    volatile boolean isTxThreadRunning = false;
 
     public boolean updateUiFunction() {
 //        if (msgStats.get(MsgStatType.BLE_RX.ordinal()).getRate() < 1.0) {
@@ -178,9 +172,8 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
 //                sendPacketSelect(mLastPacket);
 //            }
 //        }
-
         if (!USE_RX_RING_BUFFER) {
-            return false;
+            return true;
         }
         if (rxDataRingBuffer.isEmpty()) {
             return false;
@@ -235,8 +228,6 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
         }
     };
 
-    volatile boolean isTxThreadRunning = false;
-
     Runnable mRunnableTx = new Runnable() {
         @Override
         public void run() {
@@ -264,7 +255,9 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
     };
 
     void startRepeatingTask() {
-        mRunnableFast.run();
+        if (USE_RX_RING_BUFFER) {
+            mRunnableFast.run();
+        }
         mRunnableSlow.run();
     }
 
@@ -321,6 +314,33 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
             Toast.makeText(getContext(), "Done uploading recorded data [" + ExoData.getInstance().rxRecordedDataRingBuffer.size() + "]", Toast.LENGTH_SHORT).show();
         });
         Log.v(TAG, "Uploaded recorded data [" + ExoData.getInstance().rxRecordedDataRingBuffer.size() + "]");
+    }
+
+    @Override
+    public void onMockUartRx(@NonNull byte[] data) {
+//        Log.v(TAG, "onMockUartRx [" + BleUtils.bytesToHex2(data) + "]");
+        if (data.length < 3) {
+            return;
+        }
+
+        int key = data[IDX_KEY];
+
+        boolean isStreamingPacket = (key == KEY_FEEDBACK_PACKET_LEG_BOARD || key == KEY_FEEDBACK_PACKET_MOTOR || key == KEY_FEEDBACK_PACKET_STATUS);
+
+        if (isStreamingPacket) {
+            ExoData.getInstance().setPacket(data);
+            onRxData();
+            if (key != KEY_FEEDBACK_PACKET_STATUS) {
+                updateUiFunction();
+            }
+        }
+
+        if (rx_count == 0) {
+            onRxFirstMessage();
+        }
+
+        msgStats.get(MsgStatType.BLE_RX.ordinal()).add();
+        rx_count++;
     }
 
     @Override
@@ -450,12 +470,12 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
         for (MsgStat stat : msgStats) {
             stat.update();
         }
-        if (!ParamManager.getInstance().isInitialized()) {
-            sendPacketSelect(KEY_PARAM_REQUEST);
-            new Handler(Looper.getMainLooper()).post(() -> {
-                Toast.makeText(getContext(), "Request Params", Toast.LENGTH_SHORT).show();
-            });
-        }
+//        if (!ParamManager.getInstance().isInitialized()) {
+//            sendPacketSelect(KEY_PARAM_REQUEST);
+//            new Handler(Looper.getMainLooper()).post(() -> {
+//                Toast.makeText(getContext(), "Request Params", Toast.LENGTH_SHORT).show();
+//            });
+//        }
     }
 
     public void updateUiFunctionTx() {
@@ -561,14 +581,19 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
     //  SEND OBJECTS
     //---------------------------------------------------------------------------------//
     private void sendBytes(byte[] bytes) {
-        if (mBlePeripheralsUart == null) {
-            return;
+        if (USE_MOCK_DEVICE) {
+            Log.v(TAG, "::sendBytes [" + BleUtils.bytesToHex2(bytes) + "]");
+            MockHardware.getInstance().sendBytesToMockDevice(bytes);
+        } else {
+            if (mBlePeripheralsUart == null) {
+                return;
+            }
+            if (mBlePeripheralsUart.isEmpty()) {
+                return;
+            }
+            BlePeripheralUart peripheral = mBlePeripheralsUart.get(0);
+            mUartDataManager.send(peripheral, bytes, this);
         }
-        if (mBlePeripheralsUart.isEmpty()) {
-            return;
-        }
-        BlePeripheralUart peripheral = mBlePeripheralsUart.get(0);
-        mUartDataManager.send(peripheral, bytes, this);
     }
 
     protected byte[] addPacketHeader(byte key, byte[] data) {
@@ -583,6 +608,11 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
         return b;
     }
 
+    public void sendPacketSelect(byte packet) {
+        sendInteger(KEY_PACKET_SELECT, packet);
+        mLastPacket = packet;
+    }
+
     public void sendByteBuffer(byte key, byte[] data) {
         byte[] bytes = addPacketHeader(key, data);
         sendBytes(bytes);
@@ -593,11 +623,6 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
         byte[] bytes = addPacketHeader(key, data_bytes);
         YrConstants.log(YrConstants.DEBUG, TAG + ".sendFloat [" + key + "] [" + data + "] [" + bytes.length + "]");
         sendBytes(bytes);
-    }
-
-    public void sendPacketSelect(byte packet) {
-        sendInteger(KEY_PACKET_SELECT, packet);
-        mLastPacket = packet;
     }
 
     public void sendBool(byte key, boolean data) {
@@ -625,32 +650,36 @@ public class ConnectedPeripheralFragment extends Fragment implements UartDataMan
 
     protected void setupUart() {
         // Line dashes assigned to peripherals
-        if (!BlePeripheralUart.isUartInitialized(mBlePeripheral, mBlePeripheralsUart)) { // If was not previously setup (i.e. orientation change)
-            BlePeripheralUart blePeripheralUart = new BlePeripheralUart(mBlePeripheral);
-            mBlePeripheralsUart.add(blePeripheralUart);
-            blePeripheralUart.uartEnable(mUartDataManager, status -> mMainHandler.post(() -> {
-                if (status == BluetoothGatt.GATT_SUCCESS) {
-                    if (getBlePeripheral() != null) {
-                        Log.v(TAG, "yr-uart is uart enabled [" + getBlePeripheral().isUartEnabled() + "]");
+        try {
+            if (!BlePeripheralUart.isUartInitialized(mBlePeripheral, mBlePeripheralsUart)) { // If was not previously setup (i.e. orientation change)
+                BlePeripheralUart blePeripheralUart = new BlePeripheralUart(mBlePeripheral);
+                mBlePeripheralsUart.add(blePeripheralUart);
+                blePeripheralUart.uartEnable(mUartDataManager, status -> mMainHandler.post(() -> {
+                    if (status == BluetoothGatt.GATT_SUCCESS) {
+                        if (getBlePeripheral() != null) {
+                            Log.v(TAG, "yr-uart is uart enabled [" + getBlePeripheral().isUartEnabled() + "]");
+                        }
+                        setupUartComplete();
+                    } else {
+                        Context context = getContext();
+                        if (context != null) {
+                            WeakReference<BlePeripheralUart> weakBlePeripheralUart = new WeakReference<>(blePeripheralUart);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            AlertDialog dialog = builder.setMessage(R.string.uart_error_peripheralinit)
+                                    .setPositiveButton(android.R.string.ok, (dialogInterface, which) -> {
+                                        BlePeripheralUart strongBlePeripheralUart = weakBlePeripheralUart.get();
+                                        if (strongBlePeripheralUart != null) {
+                                            strongBlePeripheralUart.disconnect();
+                                        }
+                                    })
+                                    .show();
+                            DialogUtils.keepDialogOnOrientationChanges(dialog);
+                        }
                     }
-                    setupUartComplete();
-                } else {
-                    Context context = getContext();
-                    if (context != null) {
-                        WeakReference<BlePeripheralUart> weakBlePeripheralUart = new WeakReference<>(blePeripheralUart);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        AlertDialog dialog = builder.setMessage(R.string.uart_error_peripheralinit)
-                                .setPositiveButton(android.R.string.ok, (dialogInterface, which) -> {
-                                    BlePeripheralUart strongBlePeripheralUart = weakBlePeripheralUart.get();
-                                    if (strongBlePeripheralUart != null) {
-                                        strongBlePeripheralUart.disconnect();
-                                    }
-                                })
-                                .show();
-                        DialogUtils.keepDialogOnOrientationChanges(dialog);
-                    }
-                }
-            }));
+                }));
+            }
+        } catch (NullPointerException e) {
+
         }
     }
 

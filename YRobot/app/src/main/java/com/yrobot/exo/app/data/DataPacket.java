@@ -2,7 +2,10 @@ package com.yrobot.exo.app.data;
 
 public class DataPacket {
     public DataPacket() {
+    }
 
+    public DataPacket(byte[] data_in) {
+        setData(data_in);
     }
 
     public void setData(byte[] data_in) {

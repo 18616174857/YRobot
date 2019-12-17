@@ -31,6 +31,7 @@ import android.view.WindowManager;
 
 import com.yrobot.exo.YRobotApplication;
 import com.yrobot.exo.R;
+import com.yrobot.exo.app.data.MockHardware;
 import com.yrobot.exo.app.views.DataFragment;
 import com.yrobot.exo.app.views.ParamFragment;
 import com.yrobot.exo.app.views.UserStatusFragment;
@@ -48,6 +49,9 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.security.ProviderInstaller;
+
+import static com.yrobot.exo.app.YrConstants.MOCK_IDENTIFIER;
+import static com.yrobot.exo.app.YrConstants.USE_MOCK_DEVICE;
 
 public class MainActivity extends AppCompatActivity implements ScannerFragmentMinimal.ScannerFragmentListener, PeripheralModulesFragment.PeripheralModulesFragmentListener, DfuProgressFragmentDialog.Listener {
 
@@ -353,35 +357,39 @@ public class MainActivity extends AppCompatActivity implements ScannerFragmentMi
     }
 
     private void checkPermissions() {
-
-        final boolean areLocationServicesReadyForScanning = manageLocationServiceAvailabilityForScanning();
-        if (!areLocationServicesReadyForScanning) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            mRequestLocationDialog = builder.setMessage(R.string.bluetooth_locationpermission_disabled_text)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show();
-            //DialogUtils.keepDialogOnOrientationChanges(mRequestLocationDialog);
+        if (USE_MOCK_DEVICE) {
+            mScannerFragment.onConnectedCallback(MOCK_IDENTIFIER);
+            MockHardware.getInstance().start();
         } else {
-            if (mRequestLocationDialog != null) {
-                mRequestLocationDialog.cancel();
-                mRequestLocationDialog = null;
-            }
+            final boolean areLocationServicesReadyForScanning = manageLocationServiceAvailabilityForScanning();
+            if (!areLocationServicesReadyForScanning) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                mRequestLocationDialog = builder.setMessage(R.string.bluetooth_locationpermission_disabled_text)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .show();
+                //DialogUtils.keepDialogOnOrientationChanges(mRequestLocationDialog);
+            } else {
+                if (mRequestLocationDialog != null) {
+                    mRequestLocationDialog.cancel();
+                    mRequestLocationDialog = null;
+                }
 
-            // Bluetooth state
-            if (!hasUserAlreadyBeenAskedAboutBluetoothStatus) {     // Don't repeat the check if the user was already informed to avoid showing the "Enable Bluetooth" system prompt several times
-                final boolean isBluetoothEnabled = manageBluetoothAvailability();
+                // Bluetooth state
+                if (!hasUserAlreadyBeenAskedAboutBluetoothStatus) {     // Don't repeat the check if the user was already informed to avoid showing the "Enable Bluetooth" system prompt several times
+                    final boolean isBluetoothEnabled = manageBluetoothAvailability();
 
-                if (isBluetoothEnabled) {
-                    // Request Bluetooth scanning permissions
-                    final boolean isLocationPermissionGranted = requestCoarseLocationPermissionIfNeeded();
+                    if (isBluetoothEnabled) {
+                        // Request Bluetooth scanning permissions
+                        final boolean isLocationPermissionGranted = requestCoarseLocationPermissionIfNeeded();
 
-                    if (isLocationPermissionGranted) {
-                        // All good. Start Scanning
+                        if (isLocationPermissionGranted) {
+                            // All good. Start Scanning
 //                        BleManager.getInstance().start(MainActivity.this);
-                        // Bluetooth was enabled, resume scanning
+                            // Bluetooth was enabled, resume scanning
 //                        mMainFragment.startScanning();
 //                        startScanning();
-                        mScannerFragment.startScanning();
+                            mScannerFragment.startScanning();
+                        }
                     }
                 }
             }

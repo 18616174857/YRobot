@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,21 +21,19 @@ import android.widget.TextView;
 import com.xw.repo.BubbleSeekBar;
 import com.yrobot.exo.R;
 import com.yrobot.exo.app.ConnectedPeripheralFragment;
-import com.yrobot.exo.app.data.Param;
-import com.yrobot.exo.app.data.ParamManager;
+import com.yrobot.exo.app.utils.Param;
+import com.yrobot.exo.app.utils.ParamManager;
 import com.yrobot.exo.app.YrConstants;
 
 import static com.yrobot.exo.app.YrConstants.configBubbleSeekBar;
-import static com.yrobot.exo.app.data.Param.PARAM_TYPE_BOOL;
-import static com.yrobot.exo.app.data.Param.PARAM_TYPE_FLOAT;
-import static com.yrobot.exo.app.data.Param.PARAM_TYPE_INT16;
-import static com.yrobot.exo.app.data.Param.PARAM_TYPE_INT8;
-import static com.yrobot.exo.app.data.Param.PARAM_TYPE_SIGNAL;
+import static com.yrobot.exo.app.utils.Param.PARAM_TYPE_BOOL;
+import static com.yrobot.exo.app.utils.Param.PARAM_TYPE_FLOAT;
+import static com.yrobot.exo.app.utils.Param.PARAM_TYPE_INT16;
+import static com.yrobot.exo.app.utils.Param.PARAM_TYPE_INT8;
+import static com.yrobot.exo.app.utils.Param.PARAM_TYPE_SIGNAL;
 import static com.yrobot.exo.app.YrConstants.KEY_FEEDBACK_PACKET_STATUS;
 import static com.yrobot.exo.app.YrConstants.KEY_PARAM_REQUEST;
 import static com.yrobot.exo.app.YrConstants.KEY_PARAM_SET;
-import static com.yrobot.exo.app.YrConstants.fillColor;
-import static com.yrobot.exo.app.YrConstants.fillColorDark;
 
 public class ParamFragment extends ConnectedPeripheralFragment {
     // Log
@@ -220,7 +217,6 @@ public class ParamFragment extends ConnectedPeripheralFragment {
                 lin_layout.addView(boolSwitch);
 
                 layout.addView(lin_layout);
-
             }
         });
     }

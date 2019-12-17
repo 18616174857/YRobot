@@ -18,12 +18,13 @@ import android.widget.TextView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.yrobot.exo.R;
 import com.yrobot.exo.app.ConnectedPeripheralFragment;
-import com.yrobot.exo.app.data.ChartManager;
+import com.yrobot.exo.app.utils.ChartManager;
 import com.yrobot.exo.app.data.ExoData;
 
 import java.util.ArrayList;
 
 import static com.yrobot.exo.app.YrConstants.KEY_FEEDBACK_PACKET_LEG_BOARD;
+import static com.yrobot.exo.app.YrConstants.USE_MOCK_DEVICE;
 
 public class DataFragment extends ConnectedPeripheralFragment {
 
@@ -111,7 +112,7 @@ public class DataFragment extends ConnectedPeripheralFragment {
         int delay = 30;
         chartManagerLeg.addEntry(delay, ExoData.getInstance().legDataL.getArray());
         chartManagerLegImu.addEntry(delay, ExoData.getInstance().legDataL.getImuArray(0));
-        chartManagerGaitPercent.addEntry(delay, new float[]{ExoData.getInstance().mGaitCyclePercent});
+        chartManagerGaitPercent.addEntry(delay, new float[]{ExoData.getInstance().legDataL.gaitCyclePercent});
         return true;
     }
 
@@ -134,6 +135,10 @@ public class DataFragment extends ConnectedPeripheralFragment {
         chartManagerGaitPercent = new ChartManager(getContext(), chartGaitPercent, "Gait Percent", dataLabelsGaitPercent, -10.0f, 100.0f, false);
 
         chartGaitPercent.getDescription().setPosition(50, 70);
+
+        if (USE_MOCK_DEVICE) {
+            sendPacketSelect(KEY_FEEDBACK_PACKET_LEG_BOARD);
+        }
 
 //        chartLeg.getData().setDrawCubic(true);
 //        chartLeg.getLineData()

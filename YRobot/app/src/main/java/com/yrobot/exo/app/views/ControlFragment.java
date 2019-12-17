@@ -21,26 +21,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.github.mikephil.charting.components.YAxis;
 import com.sdsmdg.harjot.crollerTest.Croller;
 import com.xw.repo.BubbleSeekBar;
 import com.yrobot.exo.R;
 import com.yrobot.exo.app.ConnectedPeripheralFragment;
-import com.yrobot.exo.app.data.ChartManager;
+import com.yrobot.exo.app.utils.ChartManager;
 import com.yrobot.exo.app.data.DataPacket;
 import com.yrobot.exo.app.data.ExoData;
-import com.yrobot.exo.app.data.FirmwareManager;
+import com.yrobot.exo.app.utils.FirmwareManager;
 import com.yrobot.exo.app.data.MotorData;
 import com.github.mikephil.charting.charts.LineChart;
 import com.yrobot.exo.app.YrConstants;
-import com.yrobot.exo.app.data.Param;
-import com.yrobot.exo.app.data.ParamManager;
+import com.yrobot.exo.app.utils.Param;
+import com.yrobot.exo.app.utils.ParamManager;
 
-import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import static com.yrobot.exo.app.YrConstants.KEY_PARAM_SET;
+import static com.yrobot.exo.app.YrConstants.USE_MOCK_DEVICE;
 import static com.yrobot.exo.app.YrConstants.configBubbleSeekBar;
 import static com.yrobot.exo.app.YrConstants.dpToPx;
 import static com.yrobot.exo.app.YrConstants.map;
@@ -446,6 +445,8 @@ public class ControlFragment extends ConnectedPeripheralFragment {
 
     @Override
     public void onRxData() {
+//        Log.v(TAG, "::onRxData [" + ExoData.getInstance().hasStatusUpdate() + "]");
+//        ExoData.getInstance().systemData.print();
         if (ExoData.getInstance().hasStatusUpdate() && (tvTemp != null)) {
             updateStatusViews();
         }
@@ -453,10 +454,13 @@ public class ControlFragment extends ConnectedPeripheralFragment {
     }
 
     private void updateStatusViews() {
-        setTextView(tvTemp, new DecimalFormat("##.#").format(ExoData.getInstance().temp) + " °C");
-        setTextView(tvVoltage, new DecimalFormat("##.#").format(ExoData.getInstance().voltage) + " Volts");
-        setTextView(tvCurrent, new DecimalFormat("#.#").format(ExoData.getInstance().current) + " Amps");
-        setTextView(tvTimeLeftHours, new DecimalFormat("##.#").format(ExoData.getInstance().timeLeftHours) + " Hrs");
+        setTextView(tvTemp, new DecimalFormat("##.#").format(ExoData.getInstance().systemData.temp) + " °C");
+        setTextView(tvVoltage, new DecimalFormat("##.#").format(ExoData.getInstance().systemData.voltage) + " Volts")
+        ;
+        setTextView(tvCurrent, new DecimalFormat("#.#").format(ExoData.getInstance().systemData.current) + " Amps")
+        ;
+        setTextView(tvTimeLeftHours, new DecimalFormat("##.#").format(ExoData.getInstance().systemData.timeLeftHours) + " Hrs")
+        ;
     }
 
     @Override
@@ -475,6 +479,10 @@ public class ControlFragment extends ConnectedPeripheralFragment {
         updateStatusViews();
 
         onRxData();
+
+        if (USE_MOCK_DEVICE) {
+            sendPacketSelect(KEY_FEEDBACK_PACKET_MOTOR);
+        }
 
         if (!ExoData.getInstance().mStreaming) {
             displayRecordedData();

@@ -29,7 +29,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.xw.repo.BubbleSeekBar;
 import com.yrobot.exo.R;
 import com.yrobot.exo.app.ConnectedPeripheralFragment;
-import com.yrobot.exo.app.data.ChartManager;
+import com.yrobot.exo.app.utils.ChartManager;
 import com.yrobot.exo.app.data.ExoData;
 import com.yrobot.exo.app.data.MotorData;
 

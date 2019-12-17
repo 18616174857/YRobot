@@ -178,6 +178,5 @@
     <orderEntry type="library" name="Gradle: com.larswerkman:HoloColorPicker:1.5@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.xw.repo:bubbleseekbar:3.20@aar" level="project" />
     <orderEntry type="module" module-name="MPChartLib" />
-    <orderEntry type="module" module-name="MPChartLib" />
   </component>
 </module>

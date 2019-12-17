@@ -1,19 +1,52 @@
 package com.yrobot.exo.app.data;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.yrobot.exo.app.utils.State;
+import com.yrobot.exo.ble.BleUtils;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.yrobot.exo.app.YrConstants.IDX_DATA;
+import static com.yrobot.exo.app.YrConstants.convertToFloat;
+import static com.yrobot.exo.app.YrConstants.convertToShort;
 
 public class MotorData {
 
     private final static String TAG = MotorData.class.getSimpleName();
 
+    private String prefix;
+
+    public short status;
+    public float position;
+    public float velocity;
+    public float current;
+    public float position_req;
+    public float velocity_req;
+    public float current_req;
+
+    public State enabled = new State();
+    public boolean estopped;
+    public State calibrated = new State();
+    public boolean running;
+
+    public static final boolean USE_REQUEST = true;
+    public static final int DATA_LEN = USE_REQUEST ? 7 : 4;
+
+    private final float MULTIPLIER = 1000f;
+
     public MotorData(String prefix_in) {
         position = 0.0f;
         velocity = 0.0f;
         current = 0.0f;
+        position_req = 0.0f;
+        velocity_req = 0.0f;
+        current_req = 0.0f;
         prefix = prefix_in;
 
         enabled.setOnStateChange(new Runnable() {
@@ -23,40 +56,43 @@ public class MotorData {
             }
         });
 
-//        calibrated.setOnStateChange(new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.v(TAG, "Calibration changed [" + calibrated.state + "]");
-//            }
-//        });
         initGaitCycleArray();
     }
 
-    private float convert(int val, float multiplier) {
-        return ((float) val / multiplier);
+    public byte[] getByteArray() {
+        short[] vals = new short[DATA_LEN];
+        vals[0] = this.status;
+        vals[1] = convertToShort(this.position, MULTIPLIER);
+        vals[2] = convertToShort(this.velocity, MULTIPLIER);
+        vals[3] = convertToShort(this.current, MULTIPLIER);
+        if (USE_REQUEST) {
+            vals[4] = convertToShort(this.position_req, MULTIPLIER);
+            vals[5] = convertToShort(this.velocity_req, MULTIPLIER);
+            vals[6] = convertToShort(this.current_req, MULTIPLIER);
+        }
+        ByteBuffer buffer = ByteBuffer.allocate(DATA_LEN * 2).order(ByteOrder.LITTLE_ENDIAN);
+        for (int i = 0; i < vals.length; i++) {
+            buffer.putShort(vals[i]);
+        }
+        return buffer.array();
     }
 
-    private float convert(int val) {
-        return convert(val, 10.0f);
+    public void setFromByteArray(@NonNull byte[] data) {
+        short[] vals = new short[DATA_LEN];
+        for (int i = 0; i < vals.length; i++) {
+            int offset = IDX_DATA + (i * 2);
+            vals[i] = ByteBuffer.wrap(Arrays.copyOfRange(data, offset, offset + 2)).order(ByteOrder.LITTLE_ENDIAN).getShort();
+        }
+        this.status = vals[0];
+        this.position = convertToFloat(vals[1], MULTIPLIER);
+        this.velocity = convertToFloat(vals[2], MULTIPLIER);
+        this.current = convertToFloat(vals[3], MULTIPLIER);
+        if (USE_REQUEST) {
+            this.position_req = convertToFloat(vals[4], MULTIPLIER);
+            this.velocity_req = convertToFloat(vals[5], MULTIPLIER);
+            this.current_req = convertToFloat(vals[6], MULTIPLIER);
+        }
     }
-
-    float mult = 1000.0f;
-
-    public void set(int p, int v, int c) {
-        position = convert(p, mult);
-        velocity = convert(v, mult);
-        current = convert(c, mult);
-//        addNewEntry(current, position);
-    }
-
-    public void setRequest(int p, int v, int c) {
-        float mult = 1000.0f;
-        position_req = convert(p, mult);
-        velocity_req = convert(v, mult);
-        current_req = convert(c, mult);
-    }
-
-    public static final boolean USE_REQUEST = true;
 
     public float[] getValsPos() {
         if (USE_REQUEST) {
@@ -203,18 +239,4 @@ public class MotorData {
         calibrated.set(((val >> 2) & 0x01) == 1);
         running = ((val >> 3) & 0x01) == 1;
     }
-
-    private String prefix;
-
-    public float position;
-    public float velocity;
-    public float current;
-    public float position_req;
-    public float velocity_req;
-    public float current_req;
-
-    public State enabled = new State();
-    public boolean estopped;
-    public State calibrated = new State();
-    public boolean running;
 }

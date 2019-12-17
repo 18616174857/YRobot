@@ -385,6 +385,16 @@ public class ScannerFragmentMinimal extends Fragment implements ScannerStatusFra
                     }, 100);
         }
     }
+
+    public void onConnectedCallback(String identifier) {
+        new Handler(Looper.getMainLooper())
+                .postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mListener.startMainFragment(identifier);
+                    }
+                }, 100);
+    }
     // endregion
 
     // region Dfu

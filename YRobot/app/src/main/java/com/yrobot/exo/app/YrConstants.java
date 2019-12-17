@@ -59,9 +59,6 @@ public class YrConstants {
     public final static byte KEY_DATA_RECORDER_START = 1;
     public final static byte KEY_DATA_RECORDER_STOP = 2;
 
-    public static final String TEXT_RECORD = "Record";
-    public static final String TEXT_STOP = "Stop";
-
     // PACKET SELECT IDENTIFIERS
     public static final byte KEY_FEEDBACK_PACKET_MOTOR = 7;
     public static final byte KEY_FEEDBACK_PACKET_LEG_BOARD = 8;
@@ -75,10 +72,44 @@ public class YrConstants {
     public static final byte IDX_CRC = 2;
     public static final byte IDX_DATA = 3;
 
+    public static final int MODE_STREAMING = 1;
+    public static final int MODE_IDLE = 2;
+
+    public static final int SIDE_LEFT = 0;
+    public static final int SIDE_RIGHT = 1;
+
+    public static final String TEXT_RECORD = "Record";
+    public static final String TEXT_STOP = "Stop";
+
+    public static final String MOCK_IDENTIFIER = "12:34:56:78:9A:BC";
+
+    //--------------------------------------------------------------------------//
+    //  CONVERSION HELPER
+    //--------------------------------------------------------------------------//
+    public static final float DEFAULT_MULTIPLIER = 1000.0f;
+
+    public static float convertToFloat(short val) {
+        return convertToFloat(val, DEFAULT_MULTIPLIER);
+    }
+
+    public static float convertToFloat(short val, float multiplier) {
+        return ((float) val / multiplier);
+    }
+
+    public static short convertToShort(float val) {
+        return convertToShort(val, DEFAULT_MULTIPLIER);
+    }
+
+    public static short convertToShort(float val, float multiplier) {
+        return (short) Math.round(val * multiplier);
+    }
+
     //--------------------------------------------------------------------------//
     //  OPTIONS
     //--------------------------------------------------------------------------//
-    public final static boolean USE_RX_RING_BUFFER = true;
+    public static final boolean USE_MOCK_DEVICE = true;
+    //    public static final boolean USE_MOCK_DEVICE = false;
+    public final static boolean USE_RX_RING_BUFFER = !USE_MOCK_DEVICE;
     public static final boolean USE_TX_RING_BUFFER = true;
 
     public static final byte BIT_RECORDED = (byte) 0x80;
@@ -205,6 +236,10 @@ public class YrConstants {
 
     public static short bytesToShort(byte b0, byte b1) {
         return (short) ((b0 & 0xff) + ((b1 & 0xff) << 8));
+    }
+
+    public static byte[] shortToBytes(short v) {
+        return new byte[]{(byte) ((v & 0xff00) >> 8), (byte) (v & 0x00ff)};
     }
 
     //-----------------------------------------------------------------------------------------//
