@@ -1,11 +1,12 @@
-### App Instructions
+### App Setup
 
 **Getting Started**
+
 - Setup bitbucket - add SSH keys
   - bitbucket.org -> Settings -> SSH Keys -> Add Key
   - SSH Key Generate Instructions: https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html
-- Your username has been added to User Group `App Developers` - should have access to `android-app` repository
 - Clone Android app repository
+
 ```
 git clone git@bitbucket.org:yrobotinc/android-app.git
 ```
@@ -39,11 +40,11 @@ K66 <--(SPI)--> nRF52832 <--(BLE)--> [Android App]
             [Mock BLE Communication <-> Android App]
 ```
 
-### Mock BLE Communication Module
+### Mock Hardware Module
 
-This will function as a simulated back-end to temporarily replace communication with our device to avoid relying on bluetooth or hardware dependencies.
+This will function as a simulated back-end to temporarily replace bluetooth communication with our device to avoid relying on any hardware dependencies.
 
-This module doesn't exist yet, but will be created and pushed to the repository by Friday 12/20/19.
+This module doesn't exist yet, but will be created and pushed to the repository.
 
 The interface to your code will be something like:
 
@@ -54,5 +55,15 @@ public void onUartRx(@NonNull byte[] data);
 // Tx
 public void sendUartTx(@NonNull byte[] data);
 ```
+
+The encoding and decoding of these byte arrays will also be documented.
+
+---
+
+### Android Device Support
+
+Currently we are developing for:
+- Samsung Galaxy Tab A (2019, 10.1")
+- Samsung Galaxy S8+
 
 ---
